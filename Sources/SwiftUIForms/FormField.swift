@@ -26,7 +26,13 @@ public struct FormField<Value> {
         self.validation = validation
         self.errors = validation(value)
     }
-
+    
+    public init(wrappedValue value: Value, rules: [(Value) -> String?]) {
+        self.wrappedValue = value
+        self.validation = Validator<Value>.with(rules: rules)
+        self.errors = validation(value)
+    }
+    
     public var containErrors: Bool {
         !self.errors.isEmpty
     }
