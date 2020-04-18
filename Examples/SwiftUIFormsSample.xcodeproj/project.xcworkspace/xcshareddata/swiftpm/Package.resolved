@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SwiftUIForms",
+        "repositoryURL": "git@github.com:kaiobrito/swiftui-forms.git",
+        "state": {
+          "branch": "master",
+          "revision": "12532daebece6a95a6beb5f62ffdc6f43fe0904a",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
