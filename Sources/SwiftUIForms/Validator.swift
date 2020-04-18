@@ -8,10 +8,11 @@
 
 import Foundation
 
-public struct Validator<ValueType> {
-    public typealias Rule = (ValueType) -> String?
+public typealias Rule<ValueType> = (ValueType) -> String?
 
-    public var rules: [Rule]
+public struct Validator<ValueType> {
+
+    public var rules: [Rule<ValueType>]
 
     public func validate(_ value: ValueType) -> [String] {
         self.rules.map({$0(value)}).compactMap({$0})
