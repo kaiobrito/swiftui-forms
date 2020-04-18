@@ -17,6 +17,7 @@
 		8BB5D65F244A4B0A008F1CA0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BB5D65E244A4B0A008F1CA0 /* Preview Assets.xcassets */; };
 		8BB5D662244A4B0A008F1CA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BB5D660244A4B0A008F1CA0 /* LaunchScreen.storyboard */; };
 		8BB5D671244A4EB7008F1CA0 /* FormGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5D670244A4EB7008F1CA0 /* FormGroupView.swift */; };
+		8BCCDFBD244B8BEA0084EBEF /* SecureInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCCDFBC244B8BEA0084EBEF /* SecureInputView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		8BB5D661244A4B0A008F1CA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8BB5D663244A4B0A008F1CA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BB5D670244A4EB7008F1CA0 /* FormGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormGroupView.swift; sourceTree = "<group>"; };
+		8BCCDFBC244B8BEA0084EBEF /* SecureInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureInputView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			children = (
 				8BB5D670244A4EB7008F1CA0 /* FormGroupView.swift */,
 				8B8BF8F5244A58D10041DFCA /* TextInputView.swift */,
+				8BCCDFBC244B8BEA0084EBEF /* SecureInputView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -182,6 +185,7 @@
 				8B8BF8EF244A50C80041DFCA /* StringValidators.swift in Sources */,
 				8BB5D656244A4B09008F1CA0 /* AppDelegate.swift in Sources */,
 				8B8BF8F6244A58D10041DFCA /* TextInputView.swift in Sources */,
+				8BCCDFBD244B8BEA0084EBEF /* SecureInputView.swift in Sources */,
 				8BB5D658244A4B09008F1CA0 /* SceneDelegate.swift in Sources */,
 				8BB5D671244A4EB7008F1CA0 /* FormGroupView.swift in Sources */,
 				8BB5D65A244A4B09008F1CA0 /* ContentView.swift in Sources */,

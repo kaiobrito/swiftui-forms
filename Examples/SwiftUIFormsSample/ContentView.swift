@@ -24,7 +24,7 @@ struct SignUpFormData {
 }
 
 extension SignUpFormData: FormData {
-    var errors: [PartialKeyPath<SignUpFormData> : [String]] {
+    var errors: Errors {
         [
             \SignUpFormData.username: self._username.errors,
             \SignUpFormData.password: self._password.errors,
@@ -49,10 +49,10 @@ struct ContentView: View {
                         label: "Username",
                         placeholder: "e.g: foobarz1992",
                         errors: meta.errors
-                    )
+                    ).autocapitalization(.none)
                 }
                 FieldView(\.password, form: self.form) { value, meta, _ in
-                    TextInputView(
+                    SecureInputView(
                         value: value,
                         label: "Password",
                         placeholder: "e.g: secret",
@@ -60,7 +60,7 @@ struct ContentView: View {
                     )
                 }
                 FieldView(\.confirmPassword, form: self.form) { value, meta, _ in
-                    TextInputView(
+                    SecureInputView(
                         value: value,
                         label: "Confirm Password",
                         placeholder: "e.g: secret",
@@ -83,6 +83,7 @@ struct ContentView: View {
             .disabled(!form.isValid)
             .foregroundColor(.white)
             .background(Color.primary)
+            .opacity(form.isValid ? 1.0 : 0.3)
             .cornerRadius(8.0)
         }.padding()
     }
