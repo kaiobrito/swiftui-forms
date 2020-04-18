@@ -12,7 +12,7 @@ import Combine
 protocol FormContext: ObservableObject {
     associatedtype ValueType: FormData
 
-    typealias ValidationErrors = [PartialKeyPath<ValueType>: [String]]
+    typealias ValidationErrors = ValueType.Errors
 
     var value: ValueType { get set }
     var errors: ValidationErrors? { get }
@@ -20,24 +20,29 @@ protocol FormContext: ObservableObject {
     var isValid: Bool { get }
 
     func validate(value: ValueType) -> ValidationErrors?
-    func onSubmit(value: ValueType)
+    func submit()
     func reset()
 }
 
 open class BaseFormContext<ValueType: FormData>: FormContext {
     public typealias ValidationErrors = [PartialKeyPath<ValueType>: [String]]
     public typealias ValidationMethod = (ValueType) -> ValidationErrors?
+    public typealias SubmissionActionType = (ValueType) -> Void
 
     public var initialValues: ValueType
     @Published public var value: ValueType
     @Published public var errors: ValidationErrors?
     var onValidate: ValidationMethod?
+    var onSubmit: SubmissionActionType?
     private var validationCancellable: AnyCancellable!
 
-    public init(_ value: ValueType, onValidate: ValidationMethod? = nil) {
+    public init(_ value: ValueType,
+                onValidate: ValidationMethod? = nil,
+                onSubmit: SubmissionActionType? = nil) {
         self.initialValues = value
         self.value = value
         self.onValidate = onValidate
+        self.onSubmit = onSubmit
 
         // Validates the form whenever the form value changes
         self.validationCancellable = self.$value.sink(receiveValue: {
@@ -45,18 +50,15 @@ open class BaseFormContext<ValueType: FormData>: FormContext {
         })
     }
 
-    /// This method will handle the form submission like an API request or a database update
-    /// - Parameter value: valid form value
-    open func onSubmit(value: ValueType) {
-        fatalError("Not implemented yet")
-    }
-
     final public func submit() {
         if self.isValid {
-            self.onSubmit(value: self.value)
+            self.onSubmit?(self.value)
         }
     }
-
+    
+    /// Merges the errors from the FormData object and the form's validation
+    /// - Parameter value: Value to be validated
+    /// - Returns: A merged validation errors
     func validate(value: ValueType) -> ValidationErrors? {
         let formErrors = self.onValidate?(value) ?? [:]
 

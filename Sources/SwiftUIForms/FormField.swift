@@ -8,7 +8,9 @@
 import Foundation
 
 public protocol FormData {
-    var errors: [PartialKeyPath<Self>: [String]] { get }
+    typealias Errors = [PartialKeyPath<Self>: [String]]
+    
+    var errors: Errors { get }
 }
 
 @propertyWrapper
