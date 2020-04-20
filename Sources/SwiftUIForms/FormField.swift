@@ -39,3 +39,8 @@ public struct FormField<Value> {
         !self.errors.isEmpty
     }
 }
+extension FormField: Encodable where Value: Encodable {
+    public func encode(to encoder: Encoder) throws {
+        try wrappedValue.encode(to: encoder)
+    }
+}
