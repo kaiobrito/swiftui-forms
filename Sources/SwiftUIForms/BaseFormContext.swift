@@ -32,8 +32,8 @@ open class BaseFormContext<ValueType: FormData>: FormContext {
     public var initialValues: ValueType
     @Published public var value: ValueType
     @Published public var errors: ValidationErrors?
-    var onValidate: ValidationMethod?
-    var onSubmit: SubmissionActionType?
+    public var onValidate: ValidationMethod?
+    public var onSubmit: SubmissionActionType?
     private var validationCancellable: AnyCancellable!
 
     public init(_ value: ValueType,
