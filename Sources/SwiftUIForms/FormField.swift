@@ -39,6 +39,12 @@ public struct FormField<Value> {
         !self.errors.isEmpty
     }
 }
+extension FormField: Equatable where Value: Equatable {
+    public static func == (lhs: FormField<Value>, rhs: FormField<Value>) -> Bool {
+        lhs.wrappedValue == rhs.wrappedValue
+    }
+}
+
 extension FormField: Decodable where Value: Decodable {
     public init(from decoder: Decoder) throws {
         self.init(wrappedValue: try decoder.singleValueContainer().decode(Value.self), rules: [])
