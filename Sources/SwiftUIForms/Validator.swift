@@ -8,19 +8,25 @@
 
 import Foundation
 
-public typealias Rule<ValueType> = (ValueType) -> String?
+public struct Rule<ValueType> {
+    public var check: (ValueType) -> String?
+
+    public init(check: @escaping (ValueType) -> String?) {
+        self.check = check
+    }
+}
 
 public struct Validator<ValueType> {
 
     public var rules: [Rule<ValueType>]
 
     public func validate(_ value: ValueType) -> [String] {
-        self.rules.map({$0(value)}).compactMap({$0})
+        self.rules.map({$0.check(value)}).compactMap({$0})
     }
 }
 
 extension Validator {
-    public static func with<ValueType>(rules: [(ValueType) -> String?]) -> (ValueType) -> [String] {
+    public static func with<ValueType>(rules: [Rule<ValueType>]) -> (ValueType) -> [String] {
         Validator<ValueType>(rules: rules).validate
     }
 }

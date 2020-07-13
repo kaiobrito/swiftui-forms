@@ -12,7 +12,7 @@ import XCTest
 class ValidatorTests: XCTestCase {
     static let EMPTY_ERROR_MESSAGE = "Cannot be empty"
     struct DummyFormData: FormData {
-        @FormField(rules: [ {$0.isEmpty ? EMPTY_ERROR_MESSAGE: nil} ])
+        @FormField(rules: [ Rule {$0.isEmpty ? EMPTY_ERROR_MESSAGE: nil} ])
         var title = ""
         
         var errors: [PartialKeyPath<DummyFormData> : [String]] {

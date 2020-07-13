@@ -29,7 +29,7 @@ public struct FormField<Value> {
         self.errors = validation(value)
     }
     
-    public init(wrappedValue value: Value, rules: [(Value) -> String?]) {
+    public init(wrappedValue value: Value, rules: [Rule<Value>]) {
         self.wrappedValue = value
         self.validation = Validator<Value>.with(rules: rules)
         self.errors = validation(value)
